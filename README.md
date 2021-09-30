@@ -1,5 +1,5 @@
 # ajaxapi
-**Librería JS para consultas AJAX**
+**Librería JS para consultas AJAX (Se integra a general.js)**
 
 ## Import library from CDN
 ```html
