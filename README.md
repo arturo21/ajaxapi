@@ -1,6 +1,5 @@
 # ajaxapi
 **Librería JS para consultas AJAX**
-Librería JS para el manejo de peticiones AJAX
 
 ## Import library from CDN
 ```html
