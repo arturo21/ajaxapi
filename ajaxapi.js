@@ -1,6 +1,22 @@
-let ajaxsck;
-let apisc;
+/*
+  Copyright (C) 2021 Arturo Vasquez Soluciones Web.
+  Todos los derechos reservados.
 
+  La redistribución y uso en formatos fuente y binario están permitidas
+  siempre que el aviso de copyright anterior y este párrafo son
+  duplicado en todas esas formas y que cualquier documentación,
+  materiales de publicidad y otros materiales relacionados con dicha
+  distribución y uso reconocen que el software fue desarrollado
+  por el Arturo Vasquez Soluciones Web. El nombre de
+  Arturo Vasquez Soluciones Web No se puede utilizar para respaldar o promocionar productos derivados
+  de este software sin el permiso previo por escrito.
+  ESTE SOFTWARE SE PROPORCIONA '' tal cual '' Y SIN EXPRESA O
+  Garantías implícitas, incluyendo, sin limitación, los implicados
+  GARANTÍAS DE COMERCIALIZACIÓN Y APTITUD PARA UN PROPÓSITO PARTICULAR.
+*/
+/************************************************/
+/**********************AJAX API*****************/
+/************************************************/
 ajaxapi=(function(global,factory){
 	let ajax_=getSocket();
 	let bitget=0;
@@ -10,6 +26,8 @@ ajaxapi=(function(global,factory){
 	let bitload=0;
 	let protocol='get';
 	let errormessage="";
+	let bitgetxml=0;
+	let datares="";
 	//write code below
 	function getSocket(){
 		// code for modern browsers
@@ -65,11 +83,31 @@ return{
 		var params="action=getjson";
 		bitget=0;
 		bitpost=0;
+		bitgetxml=0;
 		bitgetjson=1;
 		bitupload=0;
 		bitload=0;
 		if(bitgetjson==1){
 			console.log("BITJSON=1");
+			ajax_.open("GET", url, true);
+			ajax_.send(null);
+			return this;
+		}
+  	},
+  	getXML:function(url){
+		let options;
+		let respjson;
+		let objeto;
+		let x,y,valor,indice;
+		var params="action=getxml";
+		bitget=0;
+		bitpost=0;
+		bitgetjson=0;
+		bitgetxml=1;
+		bitupload=0;
+		bitload=0;
+		if(bitgetxml==1){
+			console.log("BITXML=1");
 			ajax_.open("GET", url, true);
 			ajax_.send(null);
 			return this;
@@ -113,7 +151,18 @@ return{
 		ajax_.onreadystatechange = function(){
 			if(ajax_.readyState==4){
 				if(ajax_.status==200){
-					callback(ajax_.response);
+					if(bitgetjson==1 || bitgetxml==1){
+						if(bitgetjson==1){
+							datares = JSON.parse(ajax_.responseText);
+						}
+						if(bitgetxml==1){
+							datares = ajax_.responseXML;
+						}
+					}
+					else{
+						datares = ajax_.responseText;
+					}
+					callback(datares);
 					return this;
 				}
 				else{
@@ -130,3 +179,4 @@ return{
 	}
   }
 }(window));
+module.exports=ajaxapi;

@@ -1,0 +1,27 @@
+{
+  "name": "ajaxapi-2021",
+  "version": "0.0.1",
+  "description": "library to handle AJAX requests",
+  "main": "ajaxapi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arturo21/ajaxapi.git"
+  },
+  "keywords": [
+    "ajax",
+    "api",
+    "library",
+    "utility",
+    "javascript",
+    "js"
+  ],
+  "author": "Arturo Vásquez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arturo21/ajaxapi/issues"
+  },
+  "homepage": "https://github.com/arturo21/ajaxapi#readme"
+}
