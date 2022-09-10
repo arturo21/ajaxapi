@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2021 Arturo Vasquez Soluciones Web.
+  Copyright (C) 2022 Arturo Vasquez Soluciones Web.
   Todos los derechos reservados.
 
   La redistribución y uso en formatos fuente y binario están permitidas
@@ -28,6 +28,7 @@ ajaxapi=(function(global,factory){
 	let errormessage="";
 	let bitgetxml=0;
 	let datares="";
+	let headers="";
 	//write code below
 	function getSocket(){
 		// code for modern browsers
@@ -36,8 +37,7 @@ ajaxapi=(function(global,factory){
 	};
 return{
     getAjax:function(){
-		let sockajax=getSocket();
-		return sockajax;
+		return ajax_;
   	},
 	load:function(url){
 		let options;
@@ -53,6 +53,13 @@ return{
 		if(bitload==1){
 			console.log("BITLOAD=1");
 			ajax_.open("GET", url, true);
+			if(headers!=''){
+				ajax_.setRequestHeader("Content-Type", headers);
+			}
+			else{
+				headers="application/json";
+				ajax_.setRequestHeader("Content-Type", headers);
+			}
 			ajax_.send(null);
 			return this;
 		}
@@ -69,8 +76,14 @@ return{
 		bitupload=0;
 		bitload=0;
 		if(bitget==1){
-			console.log("BITGET=1");
 			ajax_.open("GET", url, true);
+			if(headers!=''){
+				ajax_.setRequestHeader("Content-Type", headers);
+			}
+			else{
+				headers="application/json";
+				ajax_.setRequestHeader("Content-Type", headers);
+			}
 			ajax_.send(null);
 			return this;
 		}
@@ -90,6 +103,13 @@ return{
 		if(bitgetjson==1){
 			console.log("BITJSON=1");
 			ajax_.open("GET", url, true);
+			if(headers!=''){
+				ajax_.setRequestHeader("Content-Type", headers);
+			}
+			else{
+				headers="application/json";
+				ajax_.setRequestHeader("Content-Type", headers);
+			}
 			ajax_.send(null);
 			return this;
 		}
@@ -109,10 +129,22 @@ return{
 		if(bitgetxml==1){
 			console.log("BITXML=1");
 			ajax_.open("GET", url, true);
+			if(headers!=''){
+				ajax_.setRequestHeader("Content-Type", headers);
+			}
+			else{
+				headers="application/json";
+				ajax_.setRequestHeader("Content-Type", headers);
+			}
 			ajax_.send(null);
 			return this;
 		}
   	},
+	setContentType:function(setting){
+		if(setting!=''){
+			headers=setting;
+		}
+	},
   	post:function(url,data){
 		let options;
 		let respjson;
@@ -126,6 +158,13 @@ return{
 		bitload=0;
 		ajax_=getSocket();
 		ajax_.open("POST", url, true);
+		if(headers!=''){
+			ajax_.setRequestHeader("Content-Type", headers);
+		}
+		else{
+			headers="application/json";
+			ajax_.setRequestHeader("Content-Type", headers);
+		}
 		ajax_.response='json';
 		ajax_.send(data);
 		return this;
@@ -143,33 +182,44 @@ return{
 		bitload=0;
 		ajax_=getSocket();
 		ajax_.open("POST", url, true);
+		if(headers!=''){
+			ajax_.setRequestHeader("Content-Type", headers);
+		}
+		else{
+			headers="application/json";
+			ajax_.setRequestHeader("Content-Type", headers);
+		}
 		ajax_.response='text';
 		ajax_.send(data);
 		return this;
   	},
+  	event:function(event,callback){
+		if(typeof callback==='function'){
+			ajax_.addEventListener(event, callback)
+		}
+		return this;
+  	},
 	then:function(callback){
 		ajax_.onreadystatechange = function(){
-			if(ajax_.readyState==4){
-				if(ajax_.status==200){
-					if(bitgetjson==1 || bitgetxml==1){
-						if(bitgetjson==1){
-							datares = JSON.parse(ajax_.responseText);
-						}
-						if(bitgetxml==1){
-							datares = ajax_.responseXML;
-						}
+			if(ajax_.readyState==4 && ajax_.status==200){
+				if(bitgetjson==1 || bitgetxml==1){
+					if(bitgetjson==1){
+						datares = JSON.parse(ajax_.responseText);
 					}
-					else{
-						datares = ajax_.responseText;
+					if(bitgetxml==1){
+						datares = ajax_.responseXML;
 					}
-					callback(datares);
-					return this;
 				}
 				else{
-					errormessage=ajax_.statusText;
-					ajaxapi.catch(errormessage);
-					return this;
+					datares = ajax_.responseText;
 				}
+				callback(datares);
+				return this;
+			}
+			else{
+				errormessage=ajax_.statusText;
+				ajaxapi.catch(errormessage);
+				return this;
 			}
 		};
 		return this;
