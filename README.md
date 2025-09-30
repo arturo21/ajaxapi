@@ -1,9 +1,14 @@
 # ajaxapi
 **Librería JS para consultas AJAX (Se integra a general.js)**
 
-## Import library from CDN
+## Importa la librería desde el CDN
 ```html
 	<script src="https://cdn.underdevelopment.work/generaljs/ajaxapi.js">
+```
+
+## Si quieres que el catch ejecute funciones, importa esta URL:
+```html
+	<script src="https://cdn.underdevelopment.work/generaljs/alt/ajaxapi.js">
 ```
 ## AJAX Calls
 ### GET + Callback
