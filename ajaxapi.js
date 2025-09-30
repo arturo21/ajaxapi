@@ -254,4 +254,3 @@ return{
 	}
   }
 }(window));
-module.exports=ajaxapi;
