@@ -5,7 +5,6 @@ Integración directa con [`general.js`](https://cdn.underdevelopment.work/genera
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-1.1.0-blue.svg" alt="Versión">
-  <img src="https://img.shields.io/bundlephobia/min/ajaxapi.js?label=tamaño" alt="Tamaño">
   <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="Licencia">
 </p>
 
