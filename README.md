@@ -1,15 +1,48 @@
-# ajaxapi
-**Librería JS para consultas AJAX (Se integra a general.js)**
+# ⚡ ajaxapi.js
 
-## Importa la librería desde el CDN
+**Librería JavaScript para consultas AJAX asincrónicas**  
+Integración directa con [`general.js`](https://cdn.underdevelopment.work/generaljs/general.js)
+
+<p align="center">
+  <img src="https://img.shields.io/badge/version-1.1.0-blue.svg" alt="Versión">
+  <img src="https://img.shields.io/bundlephobia/min/ajaxapi.js?label=tamaño" alt="Tamaño">
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="Licencia">
+</p>
+
+---
+
+## 📦 Instalación
+
+### CDN estándar
 ```html
-	<script src="https://cdn.underdevelopment.work/generaljs/ajaxapi.js">
-```
+<script src="https://cdn.underdevelopment.work/generaljs/ajaxapi.js"></script>
 
 ## Si quieres que el catch ejecute funciones, importa esta URL:
 ```html
 	<script src="https://cdn.underdevelopment.work/generaljs/alt/ajaxapi.js">
 ```
+
+## 🧠 Métodos disponibles
+
+| Método       | Descripción                                      |
+|--------------|--------------------------------------------------|
+| `.get()`     | Realiza una petición GET                         |
+| `.getJSON()` | Realiza una petición GET y parsea JSON           |
+| `.load()`    | Carga contenido asincrónico                      |
+| `.post()`    | Envía datos vía POST                             |
+| `.upload()`  | Envía archivos vía `FormData`                    |
+
+
+## ✨ Cambios recientes
+
+| Versión | Mejoras aplicadas                                                                 |
+|---------|------------------------------------------------------------------------------------|
+| `v1.1.0`| Se agrega soporte para `upload()` con `FormData`                                  |
+| `v1.0.9`| `.catch()` ahora puede ejecutar funciones personalizadas (versión `alt`)          |
+| `v1.0.8`| Se integran `.load()` y `.getJSON()` con compatibilidad extendida                 |
+| `v1.0.7`| `.post()` soporta objetos complejos y serialización automática                    |
+| `v1.0.6`| Se refactoriza `.get()` para mayor estabilidad y compatibilidad con `general.js`  |
+
 ## AJAX Calls
 ### GET + Callback
 ```javascript
